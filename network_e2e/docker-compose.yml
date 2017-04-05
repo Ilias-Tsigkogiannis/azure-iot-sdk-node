@@ -1,0 +1,49 @@
+version: '2.1'
+services:
+    # test-HTTP:
+    #     image: networke2e/node-test
+    #     privileged: true
+    #     environment:
+    #         - DOCKER_HOST=tcp://172.22.17.1:2375
+    #         - IOTHUB_CONNECTION_STRING
+    #     command: C:\\node-sdk\\network_e2e\\run-test.cmd http bad_network
+    #     networks:
+    #         - default
+
+    test-AMQP:
+        image: networke2e/node-test
+        privileged: true
+        env_file: amqp_env.txt
+        command: C:\\node-sdk\\network_e2e\\run-test.cmd amqp bad_network
+        networks:
+            - default
+
+    test-AMQP-WS:
+        image: networke2e/node-test
+        privileged: true
+        env_file: amqp_ws_env.txt
+        command: C:\\node-sdk\\network_e2e\\run-test.cmd amqp-ws bad_network
+        networks:
+            - default
+
+    test-MQTT:
+        image: networke2e/node-test
+        privileged: true
+        env_file: mqtt_env.txt
+        command: C:\\node-sdk\\network_e2e\\run-test.cmd mqtt bad_network
+        networks:
+            - default
+
+    test-MQTT-WS:
+        image: networke2e/node-test
+        privileged: true
+        env_file: mqtt_ws_env.txt
+        command: C:\\node-sdk\\network_e2e\\run-test.cmd mqtt-ws bad_network
+        networks:
+            - default
+
+networks:
+    default:
+        external:
+            name: TestNat
+
